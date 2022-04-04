@@ -10,8 +10,7 @@ export default function Login() {
             style={{
               // backgroundImage:
                 // "url(" + require("assets/img/register_bg_2.png").default + ")",
-                background: "rgb(93,84,236)",
-                background: "linear-gradient(90deg, rgba(93,84,236,1) 1%, rgba(26,46,186,0.9836309523809523) 38%, rgba(46,92,217,1) 70%, rgba(0,142,255,1) 100%)",
+              backgroundColor: "purple",
               backgroundSize: "100%",
               backgroundRepeat: "no-repeat"
             }}
