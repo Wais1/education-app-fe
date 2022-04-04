@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           <div className="w-full lg:w-6/12 px-4">
-            <h4 className="text-3xl font-semibold">
+            <h4 className="text-3xl text-white font-semibold">
               EducationApp
             </h4>
             <h5 className="text-lg mt-0 mb-2 text-white">
@@ -62,40 +62,40 @@ export default function Footer() {
           <div className="w-full lg:w-6/12 px-4">
             <div className="flex flex-wrap items-top mb-6">
               <div className="w-full lg:w-4/12 px-4 ml-auto">
-                <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
+                <span className="block uppercase text-gray-200 text-sm font-semibold mb-2">
                   Useful Links
                 </span>
                 <ul className="list-unstyled">
                   <li>
-                    <a className="text-white hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">About Us
                     </a>
                   </li>
                   <li>
-                    <a className="text-white hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">Blog
                     </a>
                   </li>
                 </ul>
               </div>
               <div className="w-full lg:w-4/12 px-4">
-                <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
+                <span className="block uppercase text-gray-200 text-sm font-semibold mb-2">
                   Other Resources
                 </span>
                 <ul className="list-unstyled">
 
                   <li>
-                    <a className="text-white hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">Terms & Conditions
                     </a>
                   </li>
                   <li>
-                    <a className="text-white hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">Privacy Policy
                     </a>
                   </li>
                   <li>
-                    <a className="text-white hover:text-gray-900 font-semibold block pb-2 text-sm"
+                    <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">Contact Us
                     </a>
                   </li>
