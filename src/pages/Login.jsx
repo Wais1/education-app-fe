@@ -1,143 +1,60 @@
-import React from "react";
+import { Link } from "react-router-dom"
 
-export default function Login() {
+function Login() {
   return (
-    <>
-      <main>
-        <section className=" w-full h-full">
-          <div
-            className="mt-10 w-full h-full bg-gray-900"
-            style={{
-              // backgroundImage:
-                // "url(" + require("assets/img/register_bg_2.png").default + ")",
-              backgroundColor: "purple",
-              backgroundSize: "100%",
-              backgroundRepeat: "no-repeat"
-            }}
-          ></div>
-          <div className="container mx-auto px-4 h-full">
-            <div className="flex content-center items-center justify-center h-full">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
-                  <div className="rounded-t mb-0 px-6 py-6">
-                    <div className="text-center mb-3">
-                      <h6 className="text-gray-600 text-sm font-bold">
-                        Sign in with
-                      </h6>
-                    </div>
-                    <div className="btn-wrapper text-center">
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        {/* <img
-                          alt="..."
-                          className="w-5 mr-1"
-                          src={require("assets/img/github.svg").default}
-                        /> */}
-                        Github
-                      </button>
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        {/* <img
-                          alt="..."
-                          className="w-5 mr-1"
-                          src={require("assets/img/google.svg").default}
-                        />
-                        Google */}
-                      </button>
-                    </div>
-                    <hr className="mt-6 border-b-1 border-gray-400" />
-                  </div>
-                  <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <div className="text-gray-500 text-center mb-3 font-bold">
-                      <small>Or sign in with credentials</small>
-                    </div>
-                    <form>
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                          placeholder="Email"
-                          style={{ transition: "all .15s ease" }}
-                        />
-                      </div>
+    //   Make registration form reach min height of screen, background color gradient, with padding for mobile
+    <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
+      {/* Uses mx-auto to center the form, with mx-w-lg (max width large) lg  to add space on side */}
+      <header className="max-w-lg mx-auto">
+          {/* Style paragraph heading */}
+        <p className="text-4xl font-bold text-white text-center">Login</p>
+      </header>
+      
+      {/* White background (bg-white), centers with same command, margin top and bottom, shadow,
+       rounding, padding (larger on desktop with md:p-12) */}
+      <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+          <h3 className='font-bold text-xl'>Welcome to EducationApp</h3>
+          <p className='text-gray-600 pt-2'>Sign in to your account.</p>
+        </section>
 
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                          placeholder="Password"
-                          style={{ transition: "all .15s ease" }}
-                        />
-                      </div>
-                      <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5"
-                            style={{ transition: "all .15s ease" }}
-                          />
-                          <span className="ml-2 text-sm font-semibold text-gray-700">
-                            Remember me
-                          </span>
-                        </label>
-                      </div>
-
-                      <div className="text-center mt-6">
-                        <button
-                          className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                          type="button"
-                          style={{ transition: "all .15s ease" }}
-                        >
-                          Sign In
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div className="flex flex-wrap mt-6">
-                  <div className="w-1/2">
-                    <a
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      className="text-gray-300"
-                    >
-                      <small>Forgot password?</small>
-                    </a>
-                  </div>
-                  <div className="w-1/2 text-right">
-                    <a
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      className="text-gray-300"
-                    >
-                      <small>Create new account</small>
-                    </a>
-                  </div>
-                </div>
-              </div>
+        <section className='mt-10'>
+            {/* Flex column makes each element take an entire row, not side by side */}
+          <form className='flex flex-col'>
+              {/* Add gray background, padding and margins to both the label and input */}
+            <div className='mb-6 pt-3 rounded bg-gray-200'>
+                {/* Block makes each element take entire row so theyre not side by side  */}
+              <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Email</label>
+              {/* Add gray background to input, full width and rounded. Remove outline on focus. add border-bottom to have purple border on focus, and gray on
+              neutral. add transitions of 500 ms between neutral and hover state. Finally add padding */}
+              <input type='text' id='email' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
             </div>
-          </div>
+            {/* Same style as above */}
+            <div className='mb-6 pt-3 rounded bg-gray-200'>
+              <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Password</label>
+              {/* Same style as above */}
+              <input type='password' id='password' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+            </div>
+            {/* Flex justify-end moves forgot your password to the end (right)  */}
+            <div className='flex justify-end'>
+              <a href='#' className='text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6'>
+                Forgot your password?
+              </a>
+            </div>
+            {/* Button styles with color and padding, shadow and round */}
+            <button className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200' type='submit'>
+              Sign In
+            </button>
+          </form>
         </section>
       </main>
-    </>
-  );
+      {/* Define max width for screen, then center with mx-auto. then center text with text-center */}
+      <div className="max-w-lg mx-auto text-center mt-12 mb-6">
+          <p className="text-white">Don't have an account? <Link to={'/register'}><strong className="font-bold hover:underline">Sign up.</strong></Link> </p>
+      </div>
+      
+    </div>
+  )
 }
+
+export default Login

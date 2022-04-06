@@ -89,7 +89,7 @@ export default function Navbar(props) {
             <li className="flex items-center">
             {/* Register button */}
             <button className="text-black font-semibold hover:text-white py-2 mr-5 px-4 border hover:border-transparent border-black hover:bg-orange-500 rounded">
-               <Link to='/login'> Register </Link> 
+               <Link to='/register'> Register </Link> 
             </button>
               
             {/* Login Button */}

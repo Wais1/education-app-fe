@@ -5,6 +5,7 @@ import Content from "./pages/Content";
 import About from "./pages/About";
 import FooterSmall from "./components/FooterSmall";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Content />} />
         <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
       <Footer />
       {/* <FooterSmall /> */}
