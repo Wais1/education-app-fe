@@ -1,6 +1,31 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function Login() {
+
+    // Component level state
+    const [formData, setFormData] = useState({
+      email: '',
+      password: '',
+  })
+  const { email, password  } = formData
+
+
+    // Handles changes to input fields and updates state.
+    // Takes entire form data as opposed to a state for each field (name, email, etc)
+    const onChange = (e) => {
+      setFormData((prevState) => ({
+          ...prevState,   // To add all other fields
+          [e.target.name]: e.target.value, // Takes name value from target (input field) and assigns to the value.
+      }))
+  }
+
+  // Handles form submission
+  const onSubmit = (e) => {
+      e.preventDefault()
+  }
+
+
   return (
     //   Make registration form reach min height of screen, background color gradient, with padding for mobile
     <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -27,13 +52,13 @@ function Login() {
               <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Email</label>
               {/* Add gray background to input, full width and rounded. Remove outline on focus. add border-bottom to have purple border on focus, and gray on
               neutral. add transitions of 500 ms between neutral and hover state. Finally add padding */}
-              <input type='text' id='email' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+              <input type='email' id='email' name='email' value={email} onChange={onChange} placeholder='Enter your email' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
             </div>
             {/* Same style as above */}
             <div className='mb-6 pt-3 rounded bg-gray-200'>
               <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Password</label>
               {/* Same style as above */}
-              <input type='password' id='password' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+              <input type='password' id='password' name='password' value={password} onChange={onChange} placeholder='Enter password' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
             </div>
             {/* Flex justify-end moves forgot your password to the end (right)  */}
             <div className='flex justify-end'>

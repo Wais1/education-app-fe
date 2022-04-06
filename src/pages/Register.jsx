@@ -1,6 +1,32 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function Register() {
+    // Component level state
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
+    })
+
+    const { name, email, password, password2 } = formData
+
+    // Handles changes to input fields and updates state.
+    // Takes entire form data as opposed to a state for each field (name, email, etc)
+    const onChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState,   // To add all other fields
+            [e.target.name]: e.target.value, // Takes name value from target (input field) and assigns to the value.
+        }))
+    }
+
+    // Handles form submission
+    const onSubmit = (e) => {
+        e.preventDefault()
+    }
+
+
     return (
       //   Make registration form reach min height of screen, background color gradient, with padding for mobile
       <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -20,29 +46,39 @@ function Register() {
   
           <section className='mt-10'>
               {/* Flex column makes each element take an entire row, not side by side */}
-            <form className='flex flex-col'>
+              {/* Form calls function onSubmit to handle */}
+            <form onSubmit={onSubmit} className='flex flex-col'>
+            <div className='mb-6 pt-3 rounded bg-gray-200'>
+                <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Name</label>
+                <input type='text' id='name' name='name' value={name} placeholder='Enter your name' onChange={onChange} class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+              </div>
                 {/* Add gray background, padding and margins to both the label and input */}
               <div className='mb-6 pt-3 rounded bg-gray-200'>
                   {/* Block makes each element take entire row so theyre not side by side  */}
                 <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Email</label>
                 {/* Add gray background to input, full width and rounded. Remove outline on focus. add border-bottom to have purple border on focus, and gray on
                 neutral. add transitions of 500 ms between neutral and hover state. Finally add padding */}
-                <input type='text' id='email' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+                <input type='email' id='email' name='email' value={email} placeholder='Enter your email' onChange={onChange} class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
               </div>
-              {/* Same style as above */}
+              {/* Password field */}
               <div className='mb-6 pt-3 rounded bg-gray-200'>
                 <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Password</label>
-                {/* Same style as above */}
-                <input type='password' id='password' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+                <input type='password' id='password' name='password' value={password} placeholder='Enter your password' onChange={onChange} class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
               </div>
+                {/* Confirm password field */}
+              <div className='mb-6 pt-3 rounded bg-gray-200'>
+                <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Confirm Password</label>
+                <input type='password' id='password2' name='password2' value={password2} placeholder='Confirm password' onChange={onChange} class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+              </div>
+              {/* Forgot password link (Not needed for register) */}
               {/* Flex justify-end moves forgot your password to the end (right)  */}
-              <div className='flex justify-end'>
+              {/* <div className='flex justify-end'>
                 <a href='#' className='text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6'>
                   Forgot your password?
                 </a>
-              </div>
+              </div> */}
               {/* Button styles with color and padding, shadow and round */}
-              <button className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200' type='submit'>
+              <button type='submit' className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200'>
                 Register
               </button>
             </form>
