@@ -9,7 +9,7 @@ import {
 function Content() {
   return (
     // Top and bottom margin here
-    <div className="mt-5 mb-5">
+    <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 ">
       <div class='bg-white shadow'>
         {/* <div class='max-w-7xl mx-auto py-1'>Header</div> */}
       </div>
@@ -29,7 +29,7 @@ function Content() {
             </div>
 
             {/* Upload Resource Button */}
-            <button class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 mt-5 `border border-orange-600 hover:border-transparent rounded'>
+            <button class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
               <FontAwesomeIcon icon={faUpload} transform='left-5' />
               Upload Resource
             </button>
@@ -60,7 +60,7 @@ function Content() {
                 allowFullScreen
               ></iframe>
             </div>
-            <p className="text-lg mt-2">Description</p>
+            <p className="text-lg font-light mt-2">Description</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis felis ac erat porttitor laoreet. Mauris vehicula elit a eros suscipit, sit amet accumsan urna pulvinar. 
               Proin venenatis convallis metus, eu pellentesque erat ornare non. Cras at sem ligula. Proin at ligula pretium magna lacinia vehicula nec vitae mi. Morbi non sem tincidunt 
               ante efficitur molestie nec sed velit. Nam in tempor nisl. Praesent tincidunt lacinia lectus eu dignissim. In consectetur dolor aliquet ornare pretium. Donec sed sem luctus, 
