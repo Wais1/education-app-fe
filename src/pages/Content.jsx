@@ -24,13 +24,14 @@ function Content() {
   // }, [user, navigate])
   
   // Check for user login for button
+  // Should separate these functions
   const protectRoute = () => {
     if(!user) {
       navigate('/login')
-    } 
+    } else {
+      navigate('/upload')
+    }
   }
-
-
   return (
     // Top and bottom margin here
     <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 ">

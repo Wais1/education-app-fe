@@ -1,27 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Footer() {
+
+function Footer() {
   return (
     <footer className="relative bg-blue-600 pt-8 pb-6">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full pointer-events-none overflow-hidden -mt-20"
         style={{ height: "80px" }}
       >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-gray-300 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
       </div>
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
@@ -55,7 +43,7 @@ export default function Footer() {
                 className="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
-                <i className="flex fab fa-github"></i>
+              <i className="fa-brands fa-twitter"></i>
               </button>
             </div>
           </div>
@@ -83,7 +71,6 @@ export default function Footer() {
                   Other Resources
                 </span>
                 <ul className="list-unstyled">
-
                   <li>
                     <a className="text-white hover:text-gray-200 font-semibold block pb-2 text-sm"
                         href="#">Terms & Conditions
@@ -100,16 +87,15 @@ export default function Footer() {
                     </a>
                   </li>
                 </ul>
-
               </div>
             </div>
           </div>
         </div>
-        <hr className="my-6 border-gray-400" />
+        <hr className="my-6 border-white-400" />
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-            <div className="text-sm text-gray-600 font-semibold py-1">
-              Copyright Â© {new Date().getFullYear()}{" "}{" "}
+            <div className="text-sm text-white font-semibold py-1">
+              Copyright © {new Date().getFullYear()}{" "}{" "}
               <Link to="/">
                 <p className="text-gray-200 hover:text-gray-900"> </p>
                 EducationApp
@@ -121,3 +107,6 @@ export default function Footer() {
     </footer>
   );
 }
+
+
+export default Footer
