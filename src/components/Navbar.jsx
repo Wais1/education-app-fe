@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -6,6 +6,7 @@ export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { user, logout, reset } = useContext(UserContext)
   const navigate = useNavigate()
+
 
   const onLogout = () => {
     // Call logout from reducer
@@ -101,7 +102,11 @@ export default function Navbar(props) {
 
             </li>
             {/* Logout button */}
-            {user ? (<button className="" onClick={onLogout}>Logout</button>) : 
+            {user ? (<>
+            <li className="text-gray-800">Hello <strong>{user.name}</strong></li>
+            <button className="text-red-700 font-semibold ml-8" onClick={onLogout}>Logout</button>
+            </>
+            ) : 
             // If not logged in, show  Register and Login button
             (
             <li className="flex items-center">

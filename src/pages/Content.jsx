@@ -1,4 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { UserContext } from "../context/UserContext"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useContext } from 'react'
+
+
 import {
   faArrowRotateRight,
   faArrowRight,
@@ -7,6 +12,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 function Content() {
+
+  const navigate = useNavigate()
+  const { user } = useContext(UserContext)
+
+  // Check for user login for page
+  // useEffect(() => {
+  //   if(!user) {
+  //     navigate('/login')
+  //   }
+  // }, [user, navigate])
+  
+  // Check for user login for button
+  const protectRoute = () => {
+    if(!user) {
+      navigate('/login')
+    } 
+  }
+
+
   return (
     // Top and bottom margin here
     <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 ">
@@ -29,7 +53,7 @@ function Content() {
             </div>
 
             {/* Upload Resource Button */}
-            <button class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
+            <button onClick={protectRoute} class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
               <FontAwesomeIcon icon={faUpload} transform='left-5' />
               Upload Resource
             </button>
