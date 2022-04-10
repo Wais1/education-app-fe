@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect, useContext } from "react"
+import { UserContext } from "../context/UserContext"
+import { Link, useNavigate} from "react-router-dom"
+import { faWarning } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 function Login() {
 
@@ -8,11 +11,28 @@ function Login() {
       email: '',
       password: '',
   })
-  const { email, password  } = formData
 
+    // Context API implementation
+    const { user, isSuccess, isError, message, login, setError, reset} = useContext(UserContext)
+    const { email, password  } = formData
 
-    // Handles changes to input fields and updates state.
-    // Takes entire form data as opposed to a state for each field (name, email, etc)
+    // To redirect to another page eg. homepage
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      // Navigate to homepage if registration state is successful
+      if(isSuccess || user) {
+        navigate('/')
+        console.log(user);
+        console.log(isSuccess);
+      }
+
+      // Reset state. possibly do this after leaving page
+      // reset()
+    }, [user, isError, isSuccess, message, navigate])
+
+    // Handles changes to input fields and updates state. Takes entire form data as opposed to a state for each field 
+    // (name, email, etc)
     const onChange = (e) => {
       setFormData((prevState) => ({
           ...prevState,   // To add all other fields
@@ -20,9 +40,15 @@ function Login() {
       }))
   }
 
-  // Handles form submission
+  // Handles Login submission
   const onSubmit = (e) => {
       e.preventDefault()
+
+      const userData = {
+        email, password
+      }
+      // Calls login from reducer
+      login(userData)
   }
 
 
@@ -42,10 +68,14 @@ function Login() {
           <h3 className='font-bold text-xl'>Welcome to EducationApp</h3>
           <p className='text-gray-600 pt-2'>Sign in to your account.</p>
         </section>
-
-        <section className='mt-10'>
+          {/* TEMP ALERTBOX if error */}
+          { isError &&
+          <span className="flex bg-rose-600 p-3.5 rounded-md mt-6">
+            <p className="ml-4 text-white"> <FontAwesomeIcon icon={faWarning} transform='left-10 grow-5' /> {message} </p>
+          </span> }
+        <section className='mt-7'>
             {/* Flex column makes each element take an entire row, not side by side */}
-          <form className='flex flex-col'>
+          <form onSubmit={onSubmit} className='flex flex-col'>
               {/* Add gray background, padding and margins to both the label and input */}
             <div className='mb-6 pt-3 rounded bg-gray-200'>
                 {/* Block makes each element take entire row so theyre not side by side  */}
@@ -67,7 +97,7 @@ function Login() {
               </a>
             </div>
             {/* Button styles with color and padding, shadow and round */}
-            <button className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200' type='submit'>
+            <button type='submit' className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200'>
               Sign In
             </button>
           </form>

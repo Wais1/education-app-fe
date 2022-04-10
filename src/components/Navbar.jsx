@@ -1,8 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 export default function Navbar(props) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const { user, logout, reset } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  const onLogout = () => {
+    // Call logout from reducer
+    logout();
+
+    // Reset the user logged in state
+    reset();
+    
+    // Send user to homepage
+    navigate('/')
+  }
+
   return (
     <nav
       className={
@@ -85,7 +100,10 @@ export default function Navbar(props) {
             <li className="flex items-center">
 
             </li>
-
+            {/* Logout button */}
+            {user ? (<button className="" onClick={onLogout}>Logout</button>) : 
+            // If not logged in, show  Register and Login button
+            (
             <li className="flex items-center">
             {/* Register button */}
             <Link to='/register'> 
@@ -97,13 +115,13 @@ export default function Navbar(props) {
             {/* Login Button */}
             <Link to='/login'>
               <button className="bg-blue-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
-               
                   {/* <i className="fas fa-arrow-alt-circle-down"></i>  */}
                   Login 
-                
               </button>
             </Link> 
-            </li>
+            </li> 
+            )}
+
           </ul>
         </div>
       </div>

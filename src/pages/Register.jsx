@@ -1,5 +1,11 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { UserContext } from "../context/UserContext"
+import { faWarning } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+// Can import {toast} for alerts
+// HTTP calls from components should be done in useEffect
 
 function Register() {
     // Component level state
@@ -10,7 +16,28 @@ function Register() {
         password2: '',
     })
 
+    // Context API implementation
+    const { user, isSuccess, isError, message, register, setError, reset} = useContext(UserContext)
     const { name, email, password, password2 } = formData
+
+
+    // To redirect to another page eg. homepage
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      // Navigate to homepage if registration state is successful
+      if(isSuccess || user) {
+        navigate('/')
+        console.log(user);
+        console.log(isSuccess);
+      }
+
+      // Reset state. possibly do this after leaving page
+      // reset()
+
+      // Reset state, set everything to false
+      // dispatch(reset())
+    }, [user, isError, isSuccess, message, navigate])
 
     // Handles changes to input fields and updates state.
     // Takes entire form data as opposed to a state for each field (name, email, etc)
@@ -24,8 +51,19 @@ function Register() {
     // Handles form submission
     const onSubmit = (e) => {
         e.preventDefault()
-    }
 
+        // Check if password equals confirm password field
+        if(password !== password2) {
+          setError('The confirm password field does not match') // Sets error in reducer
+        } else {
+          const userData = {
+            name, email, password
+          }
+          // This dispatches the async register function
+          console.log(userData);
+          register(userData)
+        }
+    }
 
     return (
       //   Make registration form reach min height of screen, background color gradient, with padding for mobile
@@ -43,8 +81,14 @@ function Register() {
             <h3 className='font-bold text-xl'>Welcome to EducationApp</h3>
             <p className='text-gray-600 pt-2'>Register an account.</p>
           </section>
+
+          {/* TEMP ALERTBOX if error */}
+          { isError &&
+          <span className="flex bg-rose-600 p-3.5 rounded-md mt-6">
+            <p className="ml-4 text-white"> <FontAwesomeIcon icon={faWarning} transform='left-10 grow-5' /> {message} </p>
+          </span> }
   
-          <section className='mt-10'>
+          <section className='mt-7'>
               {/* Flex column makes each element take an entire row, not side by side */}
               {/* Form calls function onSubmit to handle */}
             <form onSubmit={onSubmit} className='flex flex-col'>
