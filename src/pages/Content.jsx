@@ -73,12 +73,12 @@ function Content() {
               Next
             </button>
 
-            {/* Youtube Learning Resource */}
-            <div className="flex mt-3"> 
-              <iframe className="flex-1"
+            {/* Youtube Learning Resource. Includes responsive tailwind for iframe md: lg: etc */}
+            <div className="flex mt-3 aspect-w-16 aspect-h-9 "> 
+              <iframe className="flex-1 "
                 width='560'
-                height='315'
-                src='https://www.youtube.com/embed/gy1B3agGNxw'
+                height='500'
+                src='https://www.youtube.com/embed/FQPlEnKav48'
                 title='YouTube video player'
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

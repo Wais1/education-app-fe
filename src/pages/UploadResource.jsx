@@ -23,6 +23,14 @@ function UploadResource() {
         }
     }
 
+    // Gets embed link fro ma video link to submit
+    const getYoutubeEmbedLink = () => {
+
+    }
+
+    // Each section / topic for learning can have a code, and links are organized by that code, and requests are made 
+    // to that topic's code too.
+    
     const onSubmit = e => {
         e.preventDefault()
 

@@ -5,5 +5,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // Use aspect ratio plugin for tailwind for responsive youtube embeds
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }
