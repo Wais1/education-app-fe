@@ -89,7 +89,7 @@ function Content() {
           {/* Main Content */}
           <div class='col-span-8'>
             {/* Change Resource Button. need to add ID in params later */}
-            <button onClick={getResource} class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 border border-orange-600 hover:border-transparent rounded'>
+            <button onClick={getResource} class='bg-transparent hover:bg-orange-500 active:bg-orange-400 text-orange-600 font-semibold hover:text-white py-2 px-4 border border-orange-600 hover:border-transparent rounded'>
               <FontAwesomeIcon icon={faArrowRotateRight} transform='left-5' />
               Change Resource
             </button>

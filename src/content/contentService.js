@@ -19,7 +19,7 @@ const createGoal = async (goalData, token) => {
 }
 
 // Create new goal
-const createResource = async (text, token) => {
+const createResource = async (myReq, token) => {
     // Can put this config in a file and make it default.
     const config = {
         headers: {
@@ -27,7 +27,7 @@ const createResource = async (text, token) => {
         }
     }
 
-    const response = await axios.post(API_URL, text, config)
+    const response = await axios.post(API_URL, myReq, config)
 
     return response.data
 }
@@ -70,6 +70,7 @@ const contentService = {
     createGoal,
     getGoals,
     getResource,
+    createResource,
 }
 
 export default contentService

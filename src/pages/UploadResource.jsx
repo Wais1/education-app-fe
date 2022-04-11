@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect} from 'react'
 import { UserContext } from '../context/UserContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { faWarning } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import contentService from '../content/contentService'
@@ -13,20 +13,39 @@ function UploadResource() {
     const [isSuccess, setIsSuccess] = useState(false)
 
     const {user} = useContext(UserContext)
+    const navigate = useNavigate()
 
-    async function createResource(link) {
+    // Check for user login for page
+    useEffect(() => {
+        // Get the learning resource on load. from contentService
+        getResource()
+        if(isSuccess) {
+            navigate('/uploadSuccess')
+        }
+
+        // Uses return to call something when component unmounts
+        // Reset isSuccess and isError to false
+        return () => {
+            resetState()
+        }
+    }, [isSuccess, navigate])
+
+    // Can put useEffect here to reset state after moving off page?
+    async function createResource() {
         try {
-            // Check if this outputs
             // not sustainable method to auth..
             const token = user.token
-            console.log(token);
-
-            // Not create goal, chag
-            await contentService.createGoal(link)
+            
+            const myReq = {
+                text: video
+            }
+            // Not create goal, change
+            await contentService.createResource(myReq, token)
             // await contentService.createResource(link)
 
-            // // If success, updatel ocalstate
+            // If success, update localstate
             setIsSuccess(true)
+            console.log('Success!!!');
             setIsError(false)
             setMessage('Learning resource has been uploaded :)')
             // show nes layout: go back home button or make a new resource
@@ -67,16 +86,20 @@ function UploadResource() {
 
     // Each section / topic for learning can have a code, and links are organized by that code, and requests are made 
     // to that topic's code too.
-
-    
-    const onSubmit = e => {
+    const onSubmit = (e) => {
         e.preventDefault()
 
-        getResource('test')
-
+        // Submits request
+        createResource()
         // Can do this as async await call to contentService
         // dispatch(createGoal({text}))
     }
+
+    const resetState = () => {
+        setIsSuccess(false)
+        setIsError(false)
+    }
+
   return (
     //   Make registration form reach min height of screen, background color gradient, with padding for mobile
     <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -85,7 +108,7 @@ function UploadResource() {
           {/* Style paragraph heading */}
         <p className="text-4xl font-bold text-white">Upload</p>
       </header>
-      
+
       {/* White background (bg-white), centers with same command, margin top and bottom, shadow,
        rounding, padding (larger on desktop with md:p-12) */}
       <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">

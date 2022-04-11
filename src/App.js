@@ -8,6 +8,7 @@ import FooterSmall from "./components/FooterSmall";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UploadResource from "./pages/UploadResource";
+import SuccessfulUpload from "./pages/SuccessfulUpload";
 import './App.css';
 
 // Context API Implementation for User context
@@ -42,6 +43,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="upload" element={<UploadResource />} />
+          <Route path="uploadSuccess" element={<SuccessfulUpload />} />
         </Routes>
         <Footer />
         {/* <FooterSmall /> */}
