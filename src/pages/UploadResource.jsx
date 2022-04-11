@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { faWarning } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function UploadResource() {
     const [text, setText] = useState('')
+    const [video, setVideo] = useState('')
     const [message, setMessage] = useState('')
     const [isError, setIsError] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
@@ -30,6 +34,11 @@ function UploadResource() {
 
     // Each section / topic for learning can have a code, and links are organized by that code, and requests are made 
     // to that topic's code too.
+
+    // Handle forum change
+    const onChange = () => {
+
+    }
     
     const onSubmit = e => {
         e.preventDefault()
@@ -38,19 +47,61 @@ function UploadResource() {
         // dispatch(createGoal({text}))
     }
   return (
-    <section className='form'>
-        <form onSubmit={onSubmit}>
-            <div className="form-group">
-                <label htmlFor="text">Goal</label>
-                <input type="text" name='text' id='text' value={text} onChange={(e) => setText(e.target.value)}/>
+    //   Make registration form reach min height of screen, background color gradient, with padding for mobile
+    <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
+      {/* Uses mx-auto to center the form, with mx-w-lg (max width large) lg  to add space on side */}
+      <header className="max-w-lg mx-auto">
+          {/* Style paragraph heading */}
+        <p className="text-4xl font-bold text-white">Upload</p>
+      </header>
+      
+      {/* White background (bg-white), centers with same command, margin top and bottom, shadow,
+       rounding, padding (larger on desktop with md:p-12) */}
+      <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+          <h3 className='font-bold text-xl'>Upload</h3>
+          <p className='text-gray-600 pt-2'>Upload a Learning Resource for others.</p>
+        </section>
+          {/* TEMP ALERTBOX if error */}
+          { isError &&
+          <span className="flex bg-rose-600 p-3.5 rounded-md mt-6">
+            <p className="ml-4 text-white"> <FontAwesomeIcon icon={faWarning} transform='left-10 grow-5' /> {message} </p>
+          </span> }
+        <section className='mt-7'>
+            {/* Flex column makes each element take an entire row, not side by side */}
+          <form onSubmit={onSubmit} className='flex flex-col'>
+              {/* Add gray background, padding and margins to both the label and input */}
+            <div className='mb-6 pt-3 rounded bg-gray-200'>
+                {/* Block makes each element take entire row so theyre not side by side  */}
+              <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>YouTube Video link</label>
+              {/* Add gray background to input, full width and rounded. Remove outline on focus. add border-bottom to have purple border on focus, and gray on
+              neutral. add transitions of 500 ms between neutral and hover state. Finally add padding */}
+              <input type='text' id='video' name='video' value={video} onChange={onChange} placeholder='Enter a YouTube link' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
             </div>
-            <div className="form-group">
-                <button className="btn btn-block" type='submit'>
-                    Add goal
-                </button>
+            {/* Same style as above */}
+            {/* <div className='mb-6 pt-3 rounded bg-gray-200'>
+              <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>Password</label>
+              <input type='password' id='password' name='password' value={password} onChange={onChange} placeholder='Enter password' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+            </div> */}
+            {/* Flex justify-end moves forgot your password to the end (right)  */}
+            <div className='flex justify-end'>
+              <Link to={'/about'} className='text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6'>
+                  What is this?
+              </Link>
             </div>
-        </form>
-    </section>
+            {/* Button styles with color and padding, shadow and round */}
+            <button type='submit' className='bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200'>
+              Submit
+            </button>
+          </form>
+        </section>
+      </main>
+      {/* Define max width for screen, then center with mx-auto. then center text with text-center */}
+      <div className="max-w-lg mx-auto text-center mt-12 mb-6">
+          <p className="text-white">Go back <Link to={'/'}><strong className="font-bold hover:underline">Home.</strong></Link> </p>
+      </div>
+      
+    </div>
   )
 }
 export default UploadResource
