@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { UserContext } from "../context/UserContext"
 import { useNavigate } from "react-router-dom"
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
+import contentService from "../content/contentService"
 
 
 import {
@@ -15,13 +16,39 @@ function Content() {
 
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
+  const [video, setVideo] = useState('https://www.youtube.com/embed/FQPlEnKav48')
+    
+  // move this
+    async function getResource(link) {
+      try {
+          const token = user.token
+          console.log(token);
 
+          // Something like this mayb?
+          // const newResource = await contentService.getResource(link)
+
+          const content = await contentService.getResource()
+          console.log(content);
+          // await contentService.getResource(link)
+          
+          // Action.payload
+          setVideo(content)
+      } catch (error) {
+          const message = (error.response && error.response.data && error.response.data.message || error.message || error.toString())
+          console.log(message);
+      }
+
+  }
   // Check for user login for page
-  // useEffect(() => {
-  //   if(!user) {
-  //     navigate('/login')
-  //   }
-  // }, [user, navigate])
+  useEffect(() => {
+    // Get the learning resource on load. from contentService
+    getResource()
+
+    // Uses return to call something when component unmounts
+    // return () => {
+
+    // }
+  }, [user, navigate])
   
   // Check for user login for button
   // Should separate these functions
@@ -61,8 +88,8 @@ function Content() {
         
           {/* Main Content */}
           <div class='col-span-8'>
-            {/* Change Resource Button */}
-            <button class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 border border-orange-600 hover:border-transparent rounded'>
+            {/* Change Resource Button. need to add ID in params later */}
+            <button onClick={getResource} class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 border border-orange-600 hover:border-transparent rounded'>
               <FontAwesomeIcon icon={faArrowRotateRight} transform='left-5' />
               Change Resource
             </button>
@@ -77,7 +104,8 @@ function Content() {
               <iframe className="flex-1 "
                 width='560'
                 height='500'
-                src='https://www.youtube.com/embed/FQPlEnKav48'
+                // Takes video from state, reset constantly by the changeResource function and backend
+                src={video}
                 title='YouTube video player'
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

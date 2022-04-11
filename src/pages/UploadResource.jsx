@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom'
 import { faWarning } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import contentService from '../content/contentService'
 
 function UploadResource() {
     const [text, setText] = useState('')
@@ -10,21 +12,52 @@ function UploadResource() {
     const [isError, setIsError] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
-    async function createResource(userData) {
-        try {
-            // await authService.login(userData)
+    const {user} = useContext(UserContext)
 
-            // // If success,ful put user in data
-            // dispatch({
-            //     type: 'LOGIN',
-            //     payload: userData
-            // })
+    async function createResource(link) {
+        try {
+            // Check if this outputs
+            // not sustainable method to auth..
+            const token = user.token
+            console.log(token);
+
+            // Not create goal, chag
+            await contentService.createGoal(link)
+            // await contentService.createResource(link)
+
+            // // If success, updatel ocalstate
+            setIsSuccess(true)
+            setIsError(false)
+            setMessage('Learning resource has been uploaded :)')
+            // show nes layout: go back home button or make a new resource
         } catch (error) {
             // look for errors
             const message = (error.response && error.response.data && error.response.data.message || error.message || error.toString())
             setMessage(message)
             setIsError(true)
         }
+    }
+
+    // move this
+    async function getResource(link) {
+        try {
+            const token = user.token
+            console.log(token);
+
+            // Something like this mayb?
+            // const newResource = await contentService.getResource(link)
+
+            const goals = await contentService.getResource()
+            console.log(goals);
+            // await contentService.getResource(link)
+            
+            // Action.payload
+
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message || error.message || error.toString())
+            console.log(message);
+        }
+
     }
 
     // Gets embed link fro ma video link to submit
@@ -35,13 +68,11 @@ function UploadResource() {
     // Each section / topic for learning can have a code, and links are organized by that code, and requests are made 
     // to that topic's code too.
 
-    // Handle forum change
-    const onChange = () => {
-
-    }
     
     const onSubmit = e => {
         e.preventDefault()
+
+        getResource('test')
 
         // Can do this as async await call to contentService
         // dispatch(createGoal({text}))
@@ -76,7 +107,7 @@ function UploadResource() {
               <label className='block text-gray-700 text-sm font-bold mb-2 ml-3'>YouTube Video link</label>
               {/* Add gray background to input, full width and rounded. Remove outline on focus. add border-bottom to have purple border on focus, and gray on
               neutral. add transitions of 500 ms between neutral and hover state. Finally add padding */}
-              <input type='text' id='video' name='video' value={video} onChange={onChange} placeholder='Enter a YouTube link' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
+              <input type='text' id='text' name='text' value={video} onChange={(e) => setVideo(e.target.value)} placeholder='Enter a YouTube link' class='bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3' />
             </div>
             {/* Same style as above */}
             {/* <div className='mb-6 pt-3 rounded bg-gray-200'>

@@ -155,7 +155,6 @@ export const UserProvider = ({ children }) => {
                 payload: err.response.data.error
             })
         }
-
     }
 
     // Sets an error for the state
