@@ -85,12 +85,13 @@ function Content() {
                 allowFullScreen
               ></iframe>
             </div>
-            <p className="text-lg font-light mt-2">Description</p>
+            <p>Rating system</p>
+            <p className="text-lg font-light mt-4">Description</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis felis ac erat porttitor laoreet. Mauris vehicula elit a eros suscipit, sit amet accumsan urna pulvinar. 
               Proin venenatis convallis metus, eu pellentesque erat ornare non. Cras at sem ligula. Proin at ligula pretium magna lacinia vehicula nec vitae mi. Morbi non sem tincidunt 
               ante efficitur molestie nec sed velit. Nam in tempor nisl. Praesent tincidunt lacinia lectus eu dignissim. In consectetur dolor aliquet ornare pretium. Donec sed sem luctus, 
               dictum erat id, eleifend nibh. Proin non ligula non enim dapibus semper. Donec faucibus porttitor ultrices. Curabitur sapien lorem, consectetur vel elementum at, iaculis ac neque. Sed ac lacus orci.</p>
-            
+              
           </div>
 
           {/* Right Side Bar */}
