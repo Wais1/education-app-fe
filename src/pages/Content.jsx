@@ -41,7 +41,7 @@ function Content() {
       <div class=''>
         <div class='max-w-7xl mx-auto grid grid-cols-12'>
           {/* Left sidebar */}
-          <div class='col-span-2'>
+          <div class='col-span-2 px-2'>
             {/* Back Button */}
             <button class='bg-transparent font-semibold text-gray-600 hover:text-gray-500 py-2 px-4 rounded'>
               <FontAwesomeIcon icon={faArrowLeft} transform='grow-30 left-10' />
@@ -52,9 +52,8 @@ function Content() {
               <p>SAT</p>
               <p>Math</p>
             </div>
-
             {/* Upload Resource Button */}
-            <button onClick={protectRoute} class='bg-transparent hover:bg-orange-500 text-orange-600 font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
+            <button onClick={protectRoute} class='bg-transparent hover:bg-orange-500 text-orange-600 sm:text-lg font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
               <FontAwesomeIcon icon={faUpload} transform='left-5' />
               Upload Resource
             </button>
@@ -86,12 +85,12 @@ function Content() {
               ></iframe>
             </div>
             <p>Rating system</p>
-            <p className="text-lg font-light mt-4">Description</p>
+            <p className="text-xl mt-4">Title</p>
+            <p className="text-lg font-light mt-2">Description</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis felis ac erat porttitor laoreet. Mauris vehicula elit a eros suscipit, sit amet accumsan urna pulvinar. 
               Proin venenatis convallis metus, eu pellentesque erat ornare non. Cras at sem ligula. Proin at ligula pretium magna lacinia vehicula nec vitae mi. Morbi non sem tincidunt 
               ante efficitur molestie nec sed velit. Nam in tempor nisl. Praesent tincidunt lacinia lectus eu dignissim. In consectetur dolor aliquet ornare pretium. Donec sed sem luctus, 
               dictum erat id, eleifend nibh. Proin non ligula non enim dapibus semper. Donec faucibus porttitor ultrices. Curabitur sapien lorem, consectetur vel elementum at, iaculis ac neque. Sed ac lacus orci.</p>
-              
           </div>
 
           {/* Right Side Bar */}
