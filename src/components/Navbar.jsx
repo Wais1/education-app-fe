@@ -9,6 +9,15 @@ export default function Navbar(props) {
   const { user, logout, reset } = useContext(UserContext)
   const navigate = useNavigate()
 
+  // Fixes a bug where opening nav bar hamburger menu and resizing will keep navbar open.
+  const handleResize = () => { if(window.innerWidth > 1030) setNavbarOpen(false) }
+ 
+  useEffect(() => {
+    handleResize()
+
+    // listens for resize and calls handle resize for rest of time.
+    window.addEventListener('resize', handleResize)
+  }, [])
 
   const onLogout = () => {
     // Call logout from reducer
@@ -21,30 +30,22 @@ export default function Navbar(props) {
     navigate('/')
   }
 
+
   return (
     <nav
-      className={
-        (props.transparent
-          ? "top-0 absolute z-50 w-full"
-          : "relative shadow-sm bg-white shadow-lg") +
-        " flex flex-wrap items-center justify-between px-2 py-3 "
-      }
-    >
+      className= "relative shadow-sm bg-white shadow-lg flex flex-wrap items-center justify-between px-2 py-3 ">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <Link to="/">
-            <p
-            className="text-gray-800 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-          >EducationApp
-          </p>
-          </Link>
+            {/* ADDED FIXED position to logo / title to prevent 'glitching' position during resize window. might cause problems in future */}
+            <p className="text-gray-800 text-xl text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap fixed top-0 left-10"> EducationApp </p> 
+            </Link>
           <button
             className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <FontAwesomeIcon icon={faBars} transform=' grow-6' />
-            
           </button>
         </div>
         <div
@@ -57,22 +58,9 @@ export default function Navbar(props) {
           <ul className="flex flex-col lg:flex-row list-none mr-auto">
             <li className="flex items-center">
               <Link to ="/about">
-              <p
-                className={
-                  (props.transparent
-                    ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-                    : "text-gray-800 hover:text-gray-600") +
-                  " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                }
-              >
-                <i
-                  className={
-                    (props.transparent
-                      ? "lg:text-gray-300 text-gray-500"
-                      : "text-gray-500") +
-                    " far fa-file-alt text-lg leading-lg mr-2"
-                  }
-                />{" "}
+                {/* ADDED Conditional to ABOUT, if navabar open use flexible to keep it positioned in hamburger menu, otherwise keep it in fixed position on navbar. Can cause issues
+                and complicates  long term. */}
+              <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "fixed top-3 left-60")  }>
                 About
               </p>
               </Link>
