@@ -37,8 +37,7 @@ export default function Navbar(props) {
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <Link to="/">
-            {/* ADDED FIXED position to logo / title to prevent 'glitching' position during resize window. might cause problems in future */}
-            <p className="text-gray-800 text-xl text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap fixed top-0 left-10"> EducationApp </p> 
+            <p className="text-gray-800 text-xl text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap left-10"> EducationApp </p> 
             </Link>
           <button
             className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
@@ -60,7 +59,7 @@ export default function Navbar(props) {
               <Link to ="/about">
                 {/* ADDED Conditional to ABOUT, if navabar open use flexible to keep it positioned in hamburger menu, otherwise keep it in fixed position on navbar. Can cause issues
                 and complicates  long term. */}
-              <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "fixed top-3 left-60")  }>
+              <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "")  }>
                 About
               </p>
               </Link>
