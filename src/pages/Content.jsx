@@ -21,8 +21,10 @@ function Content() {
   // move this
     async function getResource(link) {
       try {
-          const token = user.token
-          console.log(token);
+          // Removed because it makes errors for whatever reason
+          // const token = user.token ? user.token : null
+          // console.log(token);
+
 
           // Something like this mayb?
           // const newResource = await contentService.getResource(link)
@@ -34,8 +36,9 @@ function Content() {
           // Action.payload
           setVideo(content)
       } catch (error) {
+          console.log(error);
           const message = (error.response && error.response.data && error.response.data.message || error.message || error.toString())
-          console.log(message);
+          // console.log(message);
       }
 
   }

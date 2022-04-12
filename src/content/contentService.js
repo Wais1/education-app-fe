@@ -52,6 +52,7 @@ const getGoals = async (token) => {
 // Gets a resource from the db.
 const getResource = async (token) => {
     // Can put this config in a file and make it default.
+    // Not using token here anyway
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

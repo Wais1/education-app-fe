@@ -1,9 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 
 function SuccessfulUpload() {
-    
     const navigate = useNavigate()
-
   return (
     //   Make registration form reach min height of screen, background color gradient, with padding for mobile
     <div className="body-bg min-h-screen pt-12 pb-6 px-2 md:px-0 bg-gradient-to-r from-cyan-500 to-blue-500">
