@@ -20,7 +20,7 @@ function NodeFlux() {
     // maybe need json.stringify
     useEffect(()=> {
         // send a POST request to get auth token
-        axios.post('https://backend.cloud.nodeflux.io/auth/signatures', {
+        axios.post('https://cors-anywhere.herokuapp.com/https://backend.cloud.nodeflux.io/auth/signatures', {
             "access_key": "I3EQ8R022FGOKEKLEYS61T5YE",
             "secret_key": "QhfnDPj0E1C2llbhMszWF4iBt0kJpivQF_Fbk80rRmDz2KIQsuvxrL9S0ifNiCRq"
           }).then((response) => {
@@ -56,7 +56,7 @@ function NodeFlux() {
 
         const req = 'data:image/jpeg;base64,' + base64Image
         // POST req to facemask api
-        axios.post('https://api.cloud.nodeflux.io/v1/analytics/face-mask', {
+        axios.post('https://cors-anywhere.herokuapp.com/https://api.cloud.nodeflux.io/v1/analytics/face-mask', {
             "images": [
                 req
             ]
@@ -72,7 +72,7 @@ function NodeFlux() {
     // Checks status of nodeflux api recursively every 5 seconds until job is complete.
     const checkStatus = (jobId, config) => {
         const polling = setInterval(function(){ 
-            axios.get(`https://api.cloud.nodeflux.io/v1/jobs/${jobId}`, config).then((response) => {
+            axios.get(`https://cors-anywhere.herokuapp.com/https://api.cloud.nodeflux.io/v1/jobs/${jobId}`, config).then((response) => {
                 console.log(response.data);
                 // If job is successful, terminate and stop loading
                 if(response.data.job.result.status == "success") {
