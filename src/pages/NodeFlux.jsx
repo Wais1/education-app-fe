@@ -23,6 +23,7 @@ function NodeFlux() {
 
     useEffect(()=> {
         // send a POST request to get auth token
+        //
         //   /nodefluxauth
         console.log('right before the useeffect');
         axios.post(ENDPOINT + '/nodefluxauth').then((response) => {
