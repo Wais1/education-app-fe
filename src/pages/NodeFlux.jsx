@@ -18,32 +18,35 @@ function NodeFlux() {
     // check if cookie exists for token to nodeflux? otherwise do post req? set cookie
     // Has cors error, must fix in prod.
     // maybe need json.stringify
+
+    const ENDPOINT = process.env.REACT_APP_SERVICE_URI? process.env.REACT_APP_SERVICE_URI : `http://${window.location.hostname}:5000`
+
     useEffect(()=> {
         // send a POST request to get auth token
-        axios.post('https://backend.cloud.nodeflux.io/auth/signatures', {
-            "access_key": "I3EQ8R022FGOKEKLEYS61T5YE",
-            "secret_key": "QhfnDPj0E1C2llbhMszWF4iBt0kJpivQF_Fbk80rRmDz2KIQsuvxrL9S0ifNiCRq"
-          }).then((response) => {
+        //   /nodefluxauth
+        console.log('right before the useeffect');
+        axios.post(ENDPOINT + '/nodefluxauth').then((response) => {
+            console.log('something happened :D');
             console.log(response);
             console.log(response.data.token);
             console.log(response.data.headers['x-nodeflux-timestamp']);
             setAuthToken(response.data.token);
             setTimeStamp(response.data.headers['x-nodeflux-timestamp'])
           }, (error) => {
+              console.log('bad thing happened!!');
             console.log(error);
           });;
-
+          console.log('right after post');
     },[])
 
     // Axios post req with config to facemask api
     const checkFaceMask = (base64Image) => {
         // First, convert to base64 string,
-        console.log('I3EQ8R022FGOKEKLEYS61T5YE');
         const date = timeStamp.substring(0,8)
         console.log(date);
         console.log('new base64 image');
         console.log(base64Image);
-        // might need ot keep the {}
+        //timestamp n date n authtoken is empty?
         const authKey =  `NODEFLUX-HMAC-SHA256 Credential=I3EQ8R022FGOKEKLEYS61T5YE/${date}/nodeflux.api.v1beta1.ImageAnalytic/StreamImageAnalytic, SignedHeaders=x-nodeflux-timestamp, Signature=${authToken}`
         const config = {
             headers: {
@@ -53,15 +56,17 @@ function NodeFlux() {
                 'x-nodeflux-timestamp': timeStamp,
               }
         }
+        //l aunch heroku app first, then replace links , n return json
 
         const req = 'data:image/jpeg;base64,' + base64Image
         // POST req to facemask api
         // supposed to be done by backend, since its not a broser
-        axios.post('https://api.cloud.nodeflux.io/v1/analytics/face-mask', {
+        axios.post(ENDPOINT + '/nodefluxfacemask', {
             "images": [
                 req
-            ]
-        }, config).then((response) => {
+            ],
+            "config": config
+        }).then((response) => {
             console.log(response.data);
             setLoading(true)
             checkStatus(response.data.job.id, config)
@@ -73,7 +78,10 @@ function NodeFlux() {
     // Checks status of nodeflux api recursively every 5 seconds until job is complete.
     const checkStatus = (jobId, config) => {
         const polling = setInterval(function(){ 
-            axios.get(`https://api.cloud.nodeflux.io/v1/jobs/${jobId}`, config).then((response) => {
+            axios.post(ENDPOINT + '/nodefluxcheckjob', {
+                "jobId": jobId,
+                "config": config
+            }).then((response) => {
                 console.log(response.data);
                 // If job is successful, terminate and stop loading
                 if(response.data.job.result.status == "success") {
