@@ -64,6 +64,15 @@ export default function Navbar(props) {
               </p>
               </Link>
             </li>
+            <li className="flex items-center">
+              <Link to ="/facemask">
+                {/* ADDED Conditional to ABOUT, if navabar open use flexible to keep it positioned in hamburger menu, otherwise keep it in fixed position on navbar. Can cause issues
+                and complicates  long term. */}
+              <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "")  }>
+                Nodeflux Mask Detection
+              </p>
+              </Link>
+            </li>
           </ul>
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li className="flex items-center">

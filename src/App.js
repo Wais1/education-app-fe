@@ -13,6 +13,7 @@ import './App.css';
 
 // Context API Implementation for User context
 import { UserProvider } from "./context/UserContext";
+import NodeFlux from "./pages/NodeFlux";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="upload" element={<UploadResource />} />
           <Route path="uploadSuccess" element={<SuccessfulUpload />} />
+          <Route path="facemask" element={<NodeFlux />} />
         </Routes>
         <Footer />
         {/* <FooterSmall /> */}

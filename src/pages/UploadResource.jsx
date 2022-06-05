@@ -8,6 +8,7 @@ import contentService from '../content/contentService'
 function UploadResource() {
     const [text, setText] = useState('')
     const [video, setVideo] = useState('')
+    const [embedVideo, setEmbedVideo] = useState('')
     const [message, setMessage] = useState('')
     const [isError, setIsError] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
@@ -37,7 +38,7 @@ function UploadResource() {
             const token = user.token
             
             const myReq = {
-                text: video
+                text: embedVideo
             }
             // Not create goal, change
             await contentService.createResource(myReq, token)
@@ -80,17 +81,23 @@ function UploadResource() {
     }
 
     // Gets embed link fro ma video link to submit
-    const getYoutubeEmbedLink = () => {
-
+    const getYoutubeEmbedLink = (url) => { 
+      return url.replace('/watch?v=', '/embed/')
     }
+
 
     // Each section / topic for learning can have a code, and links are organized by that code, and requests are made 
     // to that topic's code too.
     const onSubmit = (e) => {
         e.preventDefault()
-
         // Submits request
-        createResource()
+        if(video.includes('youtube')){
+          setEmbedVideo(getYoutubeEmbedLink(video))
+          createResource()
+        } else {
+          setIsError(true)
+          setMessage('Only YouTube Links are allowed.')
+        }
         // Can do this as async await call to contentService
         // dispatch(createGoal({text}))
     }
