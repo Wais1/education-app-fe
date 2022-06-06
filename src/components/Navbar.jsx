@@ -55,15 +55,15 @@ export default function Navbar(props) {
           id="example-navbar-warning"
         >
           <ul className="flex flex-col lg:flex-row list-none mr-auto">
-            <li className="flex items-center">
-              <Link to ="/about">
+            {/* <li className="flex items-center">
+              <Link to ="/about"> */}
                 {/* ADDED Conditional to ABOUT, if navabar open use flexible to keep it positioned in hamburger menu, otherwise keep it in fixed position on navbar. Can cause issues
                 and complicates  long term. */}
-              <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "")  }>
+              {/* <p className= {"text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs font-bold " + (!navbarOpen && "")  }>
                 About
               </p>
               </Link>
-            </li>
+            </li> */}
             <li className="flex items-center">
               <Link to ="/facemask">
                 {/* ADDED Conditional to ABOUT, if navabar open use flexible to keep it positioned in hamburger menu, otherwise keep it in fixed position on navbar. Can cause issues
