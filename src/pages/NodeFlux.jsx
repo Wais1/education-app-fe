@@ -115,18 +115,12 @@ function NodeFlux() {
     const convertToBase64 = (e) => {
         e.preventDefault()
         var file = document.querySelector('input[type=file]')['files'][0];
-
         var reader = new FileReader();
-        console.log("next");
           
         reader.onload = function () {
             var base64String = reader.result.replace("data:", "")
                 .replace(/^.+,/, "");
-            
-            // alert(imageBase64Stringsep);
-            console.log('STRING not saved');
             console.log(base64String);
-
             // Try passing n then check face mask
             checkFaceMask(base64String)
         }
@@ -136,7 +130,7 @@ function NodeFlux() {
   return (
       <div className="h-screen p-10">
         <div className="text-3xl font-bold my-3">Face Mask Detection</div>
-        <p className="text-gray-600 my-5">Upload your selfie here. We'll tell you if you have a face mask on, using NodeFlux technology</p>
+        <p className="text-gray-600 my-5">Upload your selfie here. We'll tell you if you have a face mask on, using NodeFlux technology. Please ensure that the image uploaded is less than 50kb in size, or compress it manually.</p>
         { jobStatus && (<p className="my-2 p-5 rounded-lg text-white bg-sky-500"> Result: You have {maskStatus ? `a mask on. Great!` : 'no mask on. Please wear a mask.'}</p>)}
         { loading && (<p className="my-2 p-5 rounded-lg text-white bg-emerald-500">Please wait while your image is being processed... </p>)}
         <form onSubmit={convertToBase64} id="myForm">
