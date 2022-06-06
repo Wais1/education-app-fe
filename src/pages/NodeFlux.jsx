@@ -20,13 +20,13 @@ function NodeFlux() {
     // maybe need json.stringify
 
     const ENDPOINT = process.env.REACT_APP_SERVICE_URI? process.env.REACT_APP_SERVICE_URI : `http://${window.location.hostname}:5000`
+    console.log('Endpoint:');
+    console.log(ENDPOINT);
 
     useEffect(()=> {
         // send a POST request to get auth token
         //
         //   /nodefluxauth
-        console.log('Endpoint:');
-        console.log(ENDPOINT);
         axios.post(ENDPOINT + '/nodefluxauth').then((response) => {
             console.log('something happened :D');
             console.log(response);
