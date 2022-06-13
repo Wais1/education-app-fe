@@ -69,18 +69,19 @@ function Content() {
         {/* <div class='max-w-7xl mx-auto py-1'>Header</div> */}
       </div>
       <div class=''>
-        <div class='max-w-7xl mx-auto grid grid-cols-12'>
+        <div class='max-w-7xl mx-auto grid grid-cols-11'>
           {/* Left sidebar */}
           <div class='col-span-2 px-2'>
             {/* Back Button */}
-            <button class='bg-transparent font-semibold text-gray-600 hover:text-gray-500 py-2 px-4 rounded'>
-              <FontAwesomeIcon icon={faArrowLeft} transform='grow-30 left-10' />
-              <p className="mt-2">Go Back</p>
-            </button>
+            {/* <button class='bg-transparent font-semibold text-gray-600 hover:text-gray-500 py-2 px-4 rounded'>
+              <FontAwesomeIcon icon={faArrowLeft} transform='grow-20 left-10' />
+              <p className="mt-4">Back</p>
+            </button> */}
             {/* Navigation Info */}
             <div className="mt-5">
-              <p>SAT</p>
-              <p>Math</p>
+              <p className="font-semibold text-xl">Math</p>
+              <p className="mt-2 text-lg">SAT Part 10</p>
+              <p className="text-lg">How to divide fractions</p>
             </div>
             {/* Upload Resource Button */}
             <button onClick={protectRoute} class='bg-transparent hover:bg-orange-500 text-orange-600 sm:text-lg font-semibold hover:text-white py-2 px-4 mt-5 border border-orange-600 hover:border-transparent rounded'>
@@ -97,7 +98,7 @@ function Content() {
               Change Resource
             </button>
             {/* Next Button */}
-            <button class='bg-blue-500 hover:bg-sky-700 text-white font-semibold py-2 px-4 rounded ml-2'>
+            <button class='bg-blue-500 hover:bg-sky-700 text-white font-semibold py-2 px-4 rounded ml-2' onClick={()=>alert('This function is still in development.')}>
               <FontAwesomeIcon icon={faArrowRight} transform='left-5' />
               Next
             </button>
@@ -115,19 +116,15 @@ function Content() {
                 allowFullScreen
               ></iframe>
             </div>
-            <p>Rating system</p>
-            <p className="text-xl mt-4">Title</p>
-            <p className="text-lg font-light mt-2">Description</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis felis ac erat porttitor laoreet. Mauris vehicula elit a eros suscipit, sit amet accumsan urna pulvinar. 
-              Proin venenatis convallis metus, eu pellentesque erat ornare non. Cras at sem ligula. Proin at ligula pretium magna lacinia vehicula nec vitae mi. Morbi non sem tincidunt 
-              ante efficitur molestie nec sed velit. Nam in tempor nisl. Praesent tincidunt lacinia lectus eu dignissim. In consectetur dolor aliquet ornare pretium. Donec sed sem luctus, 
-              dictum erat id, eleifend nibh. Proin non ligula non enim dapibus semper. Donec faucibus porttitor ultrices. Curabitur sapien lorem, consectetur vel elementum at, iaculis ac neque. Sed ac lacus orci.</p>
+            {/* <p className="text-xl mt-4">Title</p> */}
+            <p className="text-lg mt-2 mb-1 font-semibold">Description</p>
+            <p>A fraction represents a part of a whole or, more generally, any number of equal parts. When spoken in everyday English, a fraction describes how many parts of a certain size there are, for example, one-half, eight-fifths, three-quarters.</p>
           </div>
 
           {/* Right Side Bar */}
           <div class='col-span-2'>
-            <p>ClassRoom</p>
-            <p>Practice Resources</p>
+            {/* <p>ClassRoom</p>
+            <p>Practice Resources</p> */}
           </div>
         </div>
       </div>
