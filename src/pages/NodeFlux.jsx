@@ -13,6 +13,7 @@ function NodeFlux() {
     const [jobStatus, setJobStatus] = useState(false)
     const [loading, setLoading] = useState(false)
     const [maskStatus, setMaskStatus] = useState(false)
+    const [errMessage, setErrMessage] = useState('')
 
     // Post req to auth
     // check if cookie exists for token to nodeflux? otherwise do post req? set cookie
@@ -36,7 +37,7 @@ function NodeFlux() {
             setTimeStamp(response.data.headers['x-nodeflux-timestamp'])
           }, (error) => {
               console.log('bad thing happened!!');
-            console.log(error);
+              setErrMessage('There was an error uploading, please ensure the image is less than 50kb in size.')
           });;
           console.log('right after post');
     },[])
@@ -131,6 +132,7 @@ function NodeFlux() {
       <div className="h-screen p-10">
         <div className="text-3xl font-bold my-3">Face Mask Detection</div>
         <p className="text-gray-600 my-5">Upload your selfie here. We'll tell you if you have a face mask on, using NodeFlux technology. Please ensure that the image uploaded is less than 50kb in size, or compress it manually.</p>
+        <p className="text-red-600 my-5">{errMessage}</p>
         { jobStatus && (<p className="my-2 p-5 rounded-lg text-white bg-sky-500"> Result: You have {maskStatus ? `a mask on. Great!` : 'no mask on. Please wear a mask.'}</p>)}
         { loading && (<p className="my-2 p-5 rounded-lg text-white bg-emerald-500">Please wait while your image is being processed... </p>)}
         <form onSubmit={convertToBase64} id="myForm">
