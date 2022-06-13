@@ -20,12 +20,13 @@
 - Nodeflux Face Mask detection technology
 
 **Log Summary**
+
 **Wais Ibrahim -  Product Owner & Frontend developer**
-Investigation with solution ideation. Created HiFi prototypes using Adobe XD 
-React development with Tailwind, and authentication API using JWT
-Express JS, MongoDB development, Nodeflux API
+- Investigation with solution ideation. Created HiFi prototypes using Adobe XD 
+- React development with Tailwind, and authentication API using JWT
+- Express JS, MongoDB development, Nodeflux API
 
 **Alif Sutarjadi - Backend Developer**
-Developed MongoDB and Express JS
-Implemented and debugged Nodeflux API
+- Developed MongoDB and Express JS
+- Implemented and debugged Nodeflux API
 
